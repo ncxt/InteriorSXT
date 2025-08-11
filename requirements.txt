@@ -5,7 +5,6 @@ dask==2024.8.0
 fibsem_tools==7.0.5
 imageio==2.33.1
 matplotlib==3.6.2
-ncxt_psftomo==0.0.1
 numpy==1.25.2
 pandas==1.5.3
 scikit_image==0.19.3

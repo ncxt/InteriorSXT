@@ -30,8 +30,6 @@ TABLEPATH = SCRIPT_DIR / "tables" / "dose_fractionation.csv"
 ANGLE_LIST = [51, 101, 201, 499, 881]
 TOTAL_DOSES = [300 * 201, 3000 * 201, 30000 * 201]
 
-set_params()
-
 
 def window(shape, func, **kwargs):
     vs = [func(l, **kwargs) for l in shape]
@@ -59,11 +57,13 @@ def middle_frc(volume, volume_ref, L, disp=0, windowfunc=None):
 
 
 def make_data():
+    print("Loading phantom ...")
     phantom, pixel_size = janelia_roi()
     phantom_crop = janelia_circroi(phantom, pixel_size)
     roi_width = int(6 / pixel_size)
     cell = InteriorPhantomPSF(phantom_crop, roi_width, pixel_size)
 
+    print("Loading phantom ...")
     data = dict()
     for dose in tqdm(TOTAL_DOSES):
         for na in tqdm(ANGLE_LIST, leave=False):
@@ -85,8 +85,9 @@ def make_data():
 
 
 def make_figure():
-    print("Loading phantom images...")
+    set_params()
 
+    print("Loading data ...")
     data = pd.read_csv(TABLEPATH)
 
     f, axes = plt.subplots(
@@ -99,7 +100,8 @@ def make_figure():
         for j, na in enumerate(ANGLE_LIST):
             I = int(dose / na)
 
-            x, y = data[f"{dose}_{na}"]
+            x = data[f"{dose}_{na}_x"]
+            y = data[f"{dose}_{na}_y"]
             ys = ndi.gaussian_filter1d(y, sigma=3, mode="nearest")
 
             color = f"C{j}"
@@ -116,15 +118,14 @@ def make_figure():
 
     axes[0].set_title(r"$\sum I_0 = 300 \times 201$")
     axes[1].set_title(r"$10 \times (\sum I_0)$")
-    axes[2].set_title(r"Total dose = $100 \times (\sum I_0)$")
+    axes[2].set_title(r"$100 \times (\sum I_0)$")
 
     padh = 0.10
     badb = 0.2
     f.subplots_adjust(top=1 - 0.1, bottom=badb, left=padh, right=1 - padh)
-    plt.show()
     f.savefig(EXPORT / "limited_angle_check.pdf", format="pdf")
 
 
 if __name__ == "__main__":
-    make_data()
-    # make_figure()
+    # make_data()
+    make_figure()
