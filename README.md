@@ -8,6 +8,10 @@ This repository contains the code and data used to reproduce the numerical resul
 
 ---
 
+![This is the image caption](scripts/figures/nullspace_combined.png)
+
+This work shows how a sparse set of full-field projections stabilizes the otherwise ill-posed interior tomography problem. In interior tomography, the reconstruction quality within the region of interest (ROI) is often limited by missing global information, resulting in ambiguous quantitative values in the reconstructed sample. By integrating a high-resolution interior scan with a few low-resolution full-field projections, we reduce the null space and enhance stability without dense global sampling. Unlike sinogram extension methods, which substitute low-resolution 'scout' data with high-resolution interior scans, we employ a combined reconstruction strategy that leverages all acquired data for the inversion.
+
 ## Necessary setup
 
 We use jrc_macrophage-2 [[1]](#1) as a phantom sample for the simulated results. For the scripts to work, you need to setup a working directory in the config/conf.py.

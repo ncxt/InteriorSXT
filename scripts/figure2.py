@@ -21,9 +21,10 @@ from phantom.read_write_mrc import read_mrc
 from phantom import InteriorPhantom
 
 from phantom.utils import get_psnr
+from janelia_phantom import load_janelia_phantom
 
-JANELIA_FOLDER = phantom.JANELIA_FOLDER
 SCRIPT_DIR = Path(sys.argv[0]).resolve().parent
+EXPORT = SCRIPT_DIR / "figures"
 TABLEPATH = SCRIPT_DIR / "tables" / "interior_nullspace.csv"
 
 
@@ -67,8 +68,7 @@ def getmetrics(cell: InteriorPhantom, n_roi, n_full, roi_width, roi_width_full, 
 
 
 def get_phantom_cell():
-    original_data = read_mrc(JANELIA_FOLDER / f"phantom_40nm.mrc")
-    original_pixel_size = 0.040
+    original_data, original_pixel_size = load_janelia_phantom(40)
     downscale = 4
     pixel_size = original_pixel_size * downscale
     scaled = ndi.zoom(original_data, 1 / downscale, order=1)
@@ -179,7 +179,6 @@ def plot_figure():
     axR0.plot(line(rec_mv) / cell.pixel_size, label="Combined")
     axR0.legend(prop={"size": 8})
 
-    legend = [r"Full Scan", r"Interior", r"Full Scan ROI", r"Interior ROI"]
     axR1.plot(df["n_full"], df["psnr_mv"], "C0", label=r"Full Volume")
     axR1.plot(df["n_full"], df["psnr_mv_roi"], "C1", label=r"Interior ROI")
     axR2.plot(df["n_full"], 100 * df["xnull_mv"], "C0", label=r"Full Volume")
@@ -202,9 +201,7 @@ def plot_figure():
 
     axR1.yaxis.get_major_locator().set_params(integer=True)
     plt.show()
-    fig.savefig(
-        SCRIPT_DIR / "nullspace_combined.pdf", format="pdf", bbox_inches="tight"
-    )
+    fig.savefig(EXPORT / "nullspace_combined.pdf", format="pdf", bbox_inches="tight")
 
 
 if __name__ == "__main__":

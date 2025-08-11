@@ -10,8 +10,5 @@ import conf
 JANELIA_FOLDER = conf.JANELIA_FOLDER
 WD_FOLDER = conf.WD_FOLDER
 
-BACT_FOLDER = conf.BACT_FOLDER
-BCELL_FOLDER = conf.BCELL_FOLDER
-
 from .cellphantom_bwl import InteriorPhantom
 from .cellphantom_psf import InteriorPhantomPSF

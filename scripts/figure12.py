@@ -23,8 +23,8 @@ from phantom.plt_utils import (
 )
 from figure3 import janelia_roi, janelia_circroi
 
-JANELIA_FOLDER = phantom.JANELIA_FOLDER
 SCRIPT_DIR = Path(sys.argv[0]).resolve().parent
+EXPORT = SCRIPT_DIR / "figures"
 TABLEPATH = SCRIPT_DIR / "tables" / "dose_fractionation.csv"
 
 ANGLE_LIST = [51, 101, 201, 499, 881]
@@ -122,7 +122,7 @@ def make_figure():
     badb = 0.2
     f.subplots_adjust(top=1 - 0.1, bottom=badb, left=padh, right=1 - padh)
     plt.show()
-    f.savefig(SCRIPT_DIR / "limited_angle_check.pdf", format="pdf")
+    f.savefig(EXPORT / "limited_angle_check.pdf", format="pdf")
 
 
 if __name__ == "__main__":

@@ -8,6 +8,8 @@ from phantom.plt_utils import TEXTWIDTH, metallic_mean, set_size, set_params
 from phantom.sampling import Sampling, Fradon_quad_180, LogNorm
 
 SCRIPT_DIR = Path(sys.argv[0]).resolve().parent
+EXPORT = SCRIPT_DIR / "figures"
+
 # Dimensions for the Janelia phantom
 DETECTOR_WIDTH = 801
 RADIUS = DETECTOR_WIDTH // 2
@@ -88,7 +90,7 @@ def make_figure():
     cbar = f.colorbar(im_power, cax=cax)
 
     plt.show()
-    f.savefig(SCRIPT_DIR / "sampling_power_double.pdf", format="pdf")
+    f.savefig(EXPORT / "sampling_power_double.pdf", format="pdf")
 
 
 if __name__ == "__main__":

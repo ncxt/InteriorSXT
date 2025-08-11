@@ -15,17 +15,16 @@ from phantom.read_write_mrc import read_mrc
 from phantom import InteriorPhantomPSF
 
 from phantom.plt_utils import set_params, remove_axis, TEXTWIDTH_FULL, set_size
+from janelia_phantom import load_janelia_phantom
 
-JANELIA_FOLDER = phantom.JANELIA_FOLDER
 SCRIPT_DIR = Path(sys.argv[0]).resolve().parent
-
+EXPORT = SCRIPT_DIR / "figures"
 TABLEPATH1 = SCRIPT_DIR / "tables" / "XM2_janelia_noiseless.csv"
 TABLEPATH2 = SCRIPT_DIR / "tables" / "XM2_janelia_noiseless_frc.csv"
 
 
 def janelia_roi(downscale=1):
-    original_data = read_mrc(JANELIA_FOLDER / f"phantom_20nm.mrc")
-    original_pixel_size = 0.020
+    original_data, original_pixel_size = load_janelia_phantom(20)
 
     pixel_size = original_pixel_size * downscale
     scaled = ndi.zoom(original_data, 1 / downscale, order=1)
@@ -234,9 +233,7 @@ def make_figure():
     ax2.legend()
 
     plt.show()
-    fig.savefig(
-        SCRIPT_DIR / "xm2_janelia_noiseless.pdf", format="pdf", bbox_inches="tight"
-    )
+    fig.savefig(EXPORT / "xm2_janelia_noiseless.pdf", format="pdf", bbox_inches="tight")
 
 
 if __name__ == "__main__":

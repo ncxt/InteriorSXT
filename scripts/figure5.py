@@ -8,7 +8,6 @@ import numpy as np
 from tqdm.auto import tqdm
 
 from phantom import InteriorPhantomPSF
-
 from phantom.utils import get_psnr
 
 
@@ -21,8 +20,8 @@ from phantom.plt_utils import (
 )
 from figure3 import janelia_roi, janelia_circroi
 
-JANELIA_FOLDER = phantom.JANELIA_FOLDER
 SCRIPT_DIR = Path(sys.argv[0]).resolve().parent
+EXPORT = SCRIPT_DIR / "figures"
 
 
 def get_reconstructions(cell: InteriorPhantomPSF):
@@ -167,7 +166,7 @@ def make_figure():
         remove_axis(axis)
 
     plt.show()
-    fig.savefig(SCRIPT_DIR / "dose_opt_psf.pdf", format="pdf", bbox_inches="tight")
+    fig.savefig(EXPORT / "dose_opt_psf.pdf", format="pdf", bbox_inches="tight")
 
 
 if __name__ == "__main__":
