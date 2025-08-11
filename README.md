@@ -2,7 +2,7 @@
 
 _Axel Ekman, Jian-Hua Chen, Mark A. Le Gros, Carolyn Larabell, Venera Weinhardt_
 
-This repository contains the code and data used to generate all figures in the article:
+This repository contains the code and data used to reproduce the numerical results in the article:
 
 > **[Full citation or link to preprint/journal]**
 
@@ -15,9 +15,6 @@ We use jrc_macrophage-2 [[1]](#1) as a phantom sample for the simulated results.
 ```python
 JANELIA_FOLDER = Path("your/path/here")
 WD_FOLDER = Path("your/path/here")
-
-BACT_FOLDER = Path("your/path/here")
-BCELL_FOLDER = Path("your/path/here")
 ```
 
 where the phantom volume will be downloaded to `JANELIA_FOLDER` and the corresponding projection and reconstruction data will be stored in the working directory `WD_FOLDER`.
