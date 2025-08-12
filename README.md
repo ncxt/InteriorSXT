@@ -2,13 +2,12 @@
 
 This repository contains the code and data used to reproduce the numerical results in the article:
 
-> **Interior soft x-ray tomography with sparse global sampling** <br>
-> _Axel Ekman, Jian-Hua Chen, Mark A. Le Gros, Carolyn Larabell, Venera Weinhardt_ <br>
+> **Interior soft x-ray tomography with sparse global sampling** <br> > _Axel Ekman, Jian-Hua Chen, Mark A. Le Gros, Carolyn Larabell, Venera Weinhardt_ <br>
 > bioRxiv 2025.08.11.669333; doi: https://doi.org/10.1101/2025.08.11.669333
 
 ---
 
-![This is the image caption](scripts/figures/nullspace_combined.png)
+![GraphicalAbstract](scripts/figures/nullspace_combined.png)
 
 This work shows how a sparse set of full-field projections stabilizes the otherwise ill-posed interior tomography problem. In interior tomography, the reconstruction quality within the region of interest (ROI) is often limited by missing global information, resulting in ambiguous quantitative values in the reconstructed sample. By integrating a high-resolution interior scan with a few low-resolution full-field projections, we reduce the null space and enhance stability without dense global sampling. Unlike sinogram extension methods, which substitute low-resolution 'scout' data with high-resolution interior scans, we employ a combined reconstruction strategy that leverages all acquired data for the inversion.
 
