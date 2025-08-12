@@ -1,10 +1,10 @@
 # Interior soft x-ray tomography with sparse global sampling
 
-_Axel Ekman, Jian-Hua Chen, Mark A. Le Gros, Carolyn Larabell, Venera Weinhardt_
-
 This repository contains the code and data used to reproduce the numerical results in the article:
 
-> **[Full citation or link to preprint/journal]**
+> **Interior soft x-ray tomography with sparse global sampling** <br>
+> _Axel Ekman, Jian-Hua Chen, Mark A. Le Gros, Carolyn Larabell, Venera Weinhardt_ <br>
+> bioRxiv 2025.08.11.669333; doi: https://doi.org/10.1101/2025.08.11.669333
 
 ---
 
